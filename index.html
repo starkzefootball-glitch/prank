@@ -1,155 +1,112 @@
-<DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Site Can’t Be Reached</title>
+<title>calicut university</title>
 <style>
-  <style>
     body {
         margin: 0;
         font-family: Arial, sans-serif;
         background: white;
+        text-align: center;
     }
-    /* Fake browser address bar */
-    .browser-bar {
-        background: #f1f3f4;
-        padding: 8px;
+    /* Fake Chrome Error Page */
+    #errorPage {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        gap: 6px;
-    }
-    .url-box {
-        background: white;
-        border-radius: 20px;
-        padding: 6px 12px;
-        flex: 1;
-        display: flex;
-        align-items: center;
-        border: 1px solid #ccc;
-    }
-    .url-text {
-        font-size: 14px;
-        color: #222;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    /* Page content */
-    .content {
-        text-align: left;
-        padding: 20px;
+        justify-content: center;
+        height: 100vh;
+        padding: 0 15px;
+        box-sizing: border-box;
     }
     .error-icon {
-        font-size: 50px;
-        margin-bottom: 20px;
-    }<!
-    h1 {
+        font-size: 80px;
+        margin-bottom: 10px;
+    }
+    .error-title {
         font-size: 22px;
-        font-weight: 400;
-        margin: 0 0 12px 0;
+        font-weight: normal;
+        margin-bottom: 10px;
+        color: #333;
     }
-    p {
+    .error-details {
         font-size: 14px;
-        color: #555;
+        color: #666;
+        max-width: 300px;
+        margin-bottom: 30px;
         line-height: 1.4;
-        margin: 4px 0;
     }
-    .error-code {
-        font-size: 13px;
-        color: #777;
-        margin-top: 10px;
+    .reload-btn {
+        background-color: #1a73e8;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 14px;
+        border-radius: 4px;
+        cursor: pointer;
     }
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: white;
-    text-align: center;
-  }
-  .error-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  .error-icon {
-    font-size: 80px;
-    margin-bottom: 20px;
-  }
-  .error-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  .error-message {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 40px;
-  }
-  .reload-btn {
-    background: #1a73e8;
-    color: white;
-    padding: 14px 40px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-  }
+    .reload-btn:hover {
+        background-color: #1664c4;
+    }
 
-  /* Prank page style */
-  #prankPage {
-    display: none;
-    height: 100vh;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* Wiggle and move animation */
-  .wiggle {
-    width: 250px;
-    animation: wiggle 0.5s infinite alternate, move 3s infinite ease-in-out;
-  }
-
-  @keyframes wiggle {
-    0% { transform: rotate(-5deg); }
-    100% { transform: rotate(5deg); }
-  }
-
-  @keyframes move {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-  }
+    /* Prank page style */
+    #prankPage {
+        display: none;
+        height: 100vh;
+        width: 100%;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .dog-img {
+        width: 250px;
+        max-width: 90%;
+        animation: wiggle 0.5s infinite alternate;
+    }
+    @keyframes wiggle {
+        0% { transform: rotate(-5deg); }
+        100% { transform: rotate(5deg); }
+    }
 </style>
 </head>
 <body>
 
-<div class="error-container" id="errorPage">
-  <div class="error-icon"></div>
-  <div class="error-title">This site can’t be reached</div>
-  <div class="error-message">
-    example.com refused to connect.<br><br>
-    Try:<br>
-    Checking the connection<br>
-    ERR_CONNECTION_REFUSED
-  </div>
-  <button class="reload-btn" onclick="showPrank()">Reload</button>
+<!-- Fake Chrome Error Page -->
+<div id="errorPage">
+    <div class="error-icon">📄</div>
+    <div class="error-title">This site can’t be reached</div>
+    <div class="error-details">
+      <b>results.uoc.in.ac.com</b> took too long to respond.<br><br>
+        Try:<br>
+        • Checking the connection<br>
+        • Checking the proxy and the firewall<br>
+        ERR_CONNECTION_TIMED_OUT
+    </div>
+    <button class="reload-btn" onclick="showPrank()">Reload</button>
 </div>
 
+<!-- Prank Page -->
 <div id="prankPage">
-  <img src="1.jpg" alt="Dog Meme" class="wiggle">
-  <audio id="dogSound" src="3.mp3" autoplay loop></audio>
+    <img src="1.jpg" alt="Dog Meme" class="dog-img">
+    <audio id="dogSound" src="3.mp3" autoplay loop></audio>
 </div>
 
 <script>
-  function showPrank(){
-    document.getElementById('errorPage').style.display = 'none';
-    document.getElementById('prankPage').style.display = 'flex';
-    document.getElementById('dogSound').play();
-  }
+function showPrank() {
+    document.getElementById("errorPage").style.display = "none";
+    document.getElementById("prankPage").style.display = "flex";
+    document.getElementById("dogSound").play();
+}
 </script>
 
 </body>
 </html>
+
+
+
 
 
