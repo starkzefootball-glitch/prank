@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site Can’t Be Reached</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: white;
+    text-align: center;
+  }
+  .error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  .error-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+  }
+  .error-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .error-message {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 40px;
+  }
+  .reload-btn {
+    background: #1a73e8;
+    color: white;
+    padding: 14px 40px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+  }
+
+  /* Prank page style */
+  #prankPage {
+    display: none;
+    height: 100vh;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Wiggle and move animation */
+  .wiggle {
+    width: 250px;
+    animation: wiggle 0.5s infinite alternate, move 3s infinite ease-in-out;
+  }
+
+  @keyframes wiggle {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+  }
+
+  @keyframes move {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+</style>
+</head>
+<body>
+
+<div class="error-container" id="errorPage">
+  <div class="error-icon"><img src="war.png"></div>
+  <div class="error-title">This site can’t be reached</div>
+  <div class="error-message">
+    example.com refused to connect.<br><br>
+    Try:<br>
+    Checking the connection<br>
+    ERR_CONNECTION_REFUSED
+  </div>
+  <button class="reload-btn" onclick="showPrank()">Reload</button>
+</div>
+
+<div id="prankPage">
+  <img src="1.jpg" alt="Dog Meme" class="wiggle">
+  <audio id="dogSound" src="3.mp3" autoplay loop></audio>
+</div>
+
+<script>
+  function showPrank(){
+    document.getElementById('errorPage').style.display = 'none';
+    document.getElementById('prankPage').style.display = 'flex';
+    document.getElementById('dogSound').play();
+  }
+</script>
+
+</body>
+</html>
