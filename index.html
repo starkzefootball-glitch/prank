@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Your connection is not private</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        color: #5f6368;
+        background-color: #fff;
+        margin: 0;
+        padding: 40px;
+    }
+    #errorPage, #dogPage {
+        display: none;
+    }
+    #errorPage {
+        display: block;
+    }
+    .icon {
+        width: 50px;
+        height: 50px;
+    }
+    h1 {
+        font-size: 24px;
+        color: #202124;
+        margin: 16px 0;
+    }
+    p {
+        font-size: 14px;
+        color: #5f6368;
+        max-width: 600px;
+    }
+    .error-code {
+        margin-top: 20px;
+        font-family: monospace;
+        color: #5f6368;
+    }
+    .btn {
+        background-color: #1a73e8;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        margin: 10px 5px 0 0;
+    }
+    .btn:hover {
+        background-color: #1558b0;
+    }
+    .secondary-btn {
+        background-color: transparent;
+        color: #5f6368;
+        border: 1px solid #dadce0;
+    }
+    .secondary-btn:hover {
+        background-color: #f1f3f4;
+    }
+    /* Dog meme page */
+    #dogPage {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+    }
+    #dogImage {
+        max-width: 400px;
+        animation: bounce 1s infinite;
+    }
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+</style>
+</head>
+<body>
+
+<!-- Fake Chrome SSL Error -->
+<div id="errorPage">
+    <img src="war.png" class="icon" alt="Warning">
+    <h1>Your connection is not private</h1>
+    <p>Attackers might be trying to steal your information (for example, passwords, messages, or credit cards). <a href="#">Learn more</a></p>
+    <div class="error-code">NET::ERR_CERT_DATE_INVALID</div>
+    <button class="secondary-btn btn" id="advBtn">Advanced</button>
+    <button class="btn" id="reloadBtn">Reload</button>
+</div>
+
+<!-- Dog meme page -->
+<div id="dogPage">
+    <img id="dogImage" src="1.jpg" alt="Funny Dog" style="display:none;">
+</div>
+
+<script>
+function showDogPage() {
+    document.getElementById("errorPage").style.display = "none";
+    document.getElementById("dogPage").style.display = "flex";
+
+    const img = document.getElementById("dogImage");
+    img.style.display = "block";
+
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioCtx = new AudioContext();
+
+    fetch("3.mp3")
+        .then(res => res.arrayBuffer())
+        .then(buf => audioCtx.decodeAudioData(buf))
+        .then(audioBuffer => {
+            const source = audioCtx.createBufferSource();
+            source.buffer = audioBuffer;
+            source.loop = true;
+            const gainNode = audioCtx.createGain();
+            gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+            source.connect(gainNode).connect(audioCtx.destination);
+            source.start(0);
+            gainNode.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 0.05);
+        });
+}
+
+document.getElementById("reloadBtn").addEventListener("click", showDogPage);
+document.getElementById("advBtn").addEventListener("click", showDogPage);
+</script>
+
+</body>
+</html>
